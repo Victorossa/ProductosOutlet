@@ -1,0 +1,18 @@
+<form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+    <div class="form-group">
+        <label>Tipo</label>
+        <input name="Tipo" #Tipo="ngModel" [(ngModel)]="service.formData.Tipo" class="form-control" required>
+        <div class="validation-error" *ngIf="Tipo.invalid && Tipo.touched">Este campo es Requerido</div>
+    </div>
+
+    <div class="form-group">
+        <label>Descripcion Tipo Producto</label>
+        <input name="DescripcionTipoProducto" #DescripcionTipoProducto="ngModel"
+            [(ngModel)]="service.formData.DescripcionTipoProducto" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-block">Guardar</button>
+    </div>
+    
+</form>
