@@ -35,7 +35,7 @@ export class ProdTipoProductoComponent implements OnInit {
 
   insertRecord(form: NgForm) {
     this.service.postProdTipoProducto(form.value).subscribe(res => {
-      this.toastr.success('Tipo Producto Guardado', 'Outlet Virtual')
+      this.toastr.success('Guardado - Tipo Producto', 'Outlet Virtual')
       this.service.refreshList();
       this.resetForm(form);
     })
@@ -43,7 +43,7 @@ export class ProdTipoProductoComponent implements OnInit {
 
   updateRecord(form: NgForm) {
     this.service.putProdTipoProducto(form.value).subscribe(res => {
-      this.toastr.success('Tipo Producto Actualizado', 'Outlet Virtual')
+      this.toastr.warning('Actualizado - Tipo de Producto', 'Outlet Virtual')
       this.service.refreshList();
       this.resetForm(form);
     })

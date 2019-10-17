@@ -22,6 +22,10 @@ export class ProdTipoProductoService {
     return this.http.put(environment.rootURL + '/Prod_TipoProductos/'+formData.TipoProductoID, formData)
   }
 
+  deleteProdTipoProducto(id: number) {
+    return this.http.delete(environment.rootURL + '/Prod_TipoProductos/'+id)
+  }
+
   refreshList() {
     this.http.get(environment.rootURL + '/Prod_TipoProductos')
     .toPromise().then(res => this.list = res as ProdTipoProducto[])
