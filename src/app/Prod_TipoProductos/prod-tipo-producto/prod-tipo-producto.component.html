@@ -1,4 +1,7 @@
 <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+    
+    <input type="hidden" name="TipoProductoID" #TipoProductoID="ngModel" [(ngModel)]="service.formData.TipoProductoID" class="form-control">
+    
     <div class="form-group">
         <label>Tipo</label>
         <input name="Tipo" #Tipo="ngModel" [(ngModel)]="service.formData.Tipo" class="form-control" required>

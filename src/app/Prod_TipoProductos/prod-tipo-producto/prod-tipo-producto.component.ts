@@ -10,15 +10,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProdTipoProductoComponent implements OnInit {
 
-  constructor(private service: ProdTipoProductoService, private toastr : ToastrService) { }
+  constructor(private service: ProdTipoProductoService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.resetForm();
   }
 
   resetForm(form?: NgForm) {
-    if(form != null)
-    form.resetForm();
+    if (form != null)
+      form.resetForm();
     this.service.formData = {
       TipoProductoID: null,
       Tipo: '',
@@ -27,15 +27,27 @@ export class ProdTipoProductoComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.insertRecord(form);
+    if (form.value.TipoProductoID == null)
+      this.insertRecord(form);
+    else
+      this.updateRecord(form)
   }
 
   insertRecord(form: NgForm) {
     this.service.postProdTipoProducto(form.value).subscribe(res => {
-      this.toastr.success('Tipo Producto Guardado','Outlet Virtual')
+      this.toastr.success('Tipo Producto Guardado', 'Outlet Virtual')
+      this.service.refreshList();
       this.resetForm(form);
     })
   }
 
-
+  updateRecord(form: NgForm) {
+    this.service.putProdTipoProducto(form.value).subscribe(res => {
+      this.toastr.success('Tipo Producto Actualizado', 'Outlet Virtual')
+      this.service.refreshList();
+      this.resetForm(form);
+    })
+  }
 }
+
+

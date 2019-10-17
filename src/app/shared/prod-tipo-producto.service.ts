@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ProdTipoProducto } from './prod-tipo-producto.model';
 import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
- 
+
 
 
 @Injectable({
@@ -11,10 +11,19 @@ import { environment } from 'src/environments/environment';
 export class ProdTipoProductoService {
 
   formData: ProdTipoProducto;
-  
+  list : ProdTipoProducto[];
   constructor(private http: HttpClient) { }
 
   postProdTipoProducto(formData: ProdTipoProducto) {
-    return this.http.post(environment.rootURL + '/Prod_TipoProductos', formData);
+    return this.http.post(environment.rootURL + '/Prod_TipoProductos', formData)
+  }
+
+  putProdTipoProducto(formData: ProdTipoProducto) {
+    return this.http.put(environment.rootURL + '/Prod_TipoProductos/'+formData.TipoProductoID, formData)
+  }
+
+  refreshList() {
+    this.http.get(environment.rootURL + '/Prod_TipoProductos')
+    .toPromise().then(res => this.list = res as ProdTipoProducto[])
   }
 }

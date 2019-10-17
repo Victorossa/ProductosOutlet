@@ -1,1 +1,13 @@
-<p>prod-tipo-producto-list works!</p>
+<table class="table table-hover">
+    <thead>
+        <td><strong>Tipo</strong></td>
+        <td><strong>Descripciòn</strong></td>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of service.list">
+            <td (click)="populateForm(item)">{{item.Tipo}}</td>
+            <td (click)="populateForm(item)">{{item.DescripcionTipoProducto}}</td>
+            <td><button class="btn btn-sm btn-outline-danger">X</button></td>
+        </tr>
+    </tbody>
+</table>

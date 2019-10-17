@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProdTipoProductoService } from 'src/app/shared/prod-tipo-producto.service';
+import { ProdTipoProducto } from 'src/app/shared/prod-tipo-producto.model';
 
 @Component({
   selector: 'app-prod-tipo-producto-list',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdTipoProductoListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: ProdTipoProductoService) { }
 
   ngOnInit() {
+    this.service.refreshList();
+  }
+
+  populateForm(item : ProdTipoProducto){
+    this.service.formData = Object.assign({},item);
   }
 
 }
